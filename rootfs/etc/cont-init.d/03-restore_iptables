@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+config='/mnt/openvpn/config.ovpn'
+rules='/tmp/ipv4-rules'
+proto=$(awk '/proto / { print $2 }' "${config}")
+host=$(awk '/remote / { print $2 }' "${config}")
+port=$(awk '/remote / { print $3 }' "${config}")
+
+cat '/etc/iptables/default-policy' \
+	'/etc/iptables/ipv4-input-part1' \
+	'/etc/iptables/ipv4-input-custom' \
+	'/etc/iptables/ipv4-input-part2' \
+	'/etc/iptables/ipv4-output' \
+	'/etc/iptables/commit-rules' > "${rules}"
+
+sed "s/{PROTO}/${proto}/g; s/{HOST}/${host}/g; s/{PORT}/${port}/g" \
+	"${rules}" | iptables-restore

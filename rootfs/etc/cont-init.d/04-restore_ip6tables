@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+rules='/tmp/ipv6-rules'
+
+cat '/etc/iptables/default-policy' \
+	'/etc/iptables/commit-rules' > "${rules}"
+
+ip6tables-restore < "${rules}"

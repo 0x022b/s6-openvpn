@@ -1,0 +1,4 @@
+-A INPUT -m state --state INVALID -j DROP
+-A INPUT -p tcp -m tcp --tcp-flags FIN,SYN FIN,SYN -j DROP
+-A INPUT -p tcp -m tcp --tcp-flags SYN,RST SYN,RST -j DROP
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT

@@ -1,0 +1,2 @@
+-A INPUT -i lo -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp-port-unreachable
