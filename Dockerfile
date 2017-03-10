@@ -5,10 +5,9 @@ RUN \
 addgroup -S openvpn && \
 adduser -SD -s /sbin/nologin -h /var/lib/openvpn \
 	-g openvpn -G openvpn openvpn && \
-apk --update-cache --upgrade add \
+apk --no-cache add \
 	iptables \
 	ip6tables \
-	openvpn && \
-rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /root/.cache
+	openvpn
 
 COPY rootfs/ /
