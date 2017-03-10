@@ -2,7 +2,7 @@
 
 [![Latest Tag](https://img.shields.io/github/tag/scoobadog/docker-openvpn.svg)](https://hub.docker.com/r/scoobadog/openvpn/tags/)
 [![Docker Build](https://img.shields.io/docker/automated/scoobadog/docker-openvpn.svg)](https://hub.docker.com/r/scoobadog/openvpn/builds/)
-![Docker Pulls](https://img.shields.io/docker/pulls/scoobadog/openvpn.svg)
+[![Docker Pulls](https://img.shields.io/docker/pulls/scoobadog/openvpn.svg)](https://hub.docker.com/r/scoobadog/openvpn/)
 
 A minimal [Alpine Linux][alpine] based [Docker][docker] container with
 [OpenVPN][openvpn] and [s6][overlay] as a process supervisor.
