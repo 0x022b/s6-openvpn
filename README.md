@@ -7,7 +7,6 @@
 A minimal [Alpine Linux][alpine] based [Docker][docker] container with
 [OpenVPN][openvpn] and [s6][overlay] as a process supervisor.
 
-
 All traffic from within the container to the Internet is forced through a VPN
 tunnel by `iptables` rules and the container is configured to terminate in case
 the VPN connection drops.
