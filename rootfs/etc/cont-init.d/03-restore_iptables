@@ -1,5 +1,11 @@
 #!/bin/sh
 config='/mnt/openvpn/config.ovpn'
+
+if [ ! -e "${config}" ]; then
+	printf "ERROR: '%s' not mounted\n" "${config}"
+	exit 1
+fi
+
 rules='/tmp/ipv4-rules'
 proto=$(awk '/proto / { print $2 }' "${config}")
 host=$(awk '/remote / { print $2 }' "${config}")
