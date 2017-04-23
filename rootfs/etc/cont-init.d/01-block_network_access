@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 iptables -F INPUT
 iptables -F FORWARD
 iptables -F OUTPUT

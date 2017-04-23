@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 config='/mnt/openvpn/config.ovpn'
 rules='/tmp/ipv4-rules'
 proto=$(awk '/proto / { print $2 }' "${config}")
