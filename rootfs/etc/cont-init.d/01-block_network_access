@@ -8,6 +8,10 @@ iptables -P INPUT DROP
 iptables -P FORWARD DROP
 iptables -P OUTPUT DROP
 
+if [ $(ifconfig -a | grep -c inet6) -eq 0 ]; then
+	exit 0
+fi
+
 ip6tables -F INPUT
 ip6tables -F FORWARD
 ip6tables -F OUTPUT
