@@ -4,6 +4,7 @@ mkdir -p \
 chown -fR openvpn:openvpn \
 	'/mnt/openvpn' \
 	'/var/log/openvpn' || :
-chmod -fR a=r,a+X,u+w \
-	'/mnt/openvpn' \
+chmod -fR a=,u+rX \
+	'/mnt/openvpn' || :
+chmod -fR a=,ug+rwX \
 	'/var/log/openvpn' || :
