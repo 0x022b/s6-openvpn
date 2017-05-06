@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 mkdir -p \
-	/var/log/openvpn
+	'/var/log/openvpn'
 chown -fR openvpn:openvpn \
-	/mnt/openvpn \
-	/var/log/openvpn || :
+	'/mnt/openvpn' \
+	'/var/log/openvpn' || :
 chmod -fR a=r,a+X,u+w \
-	/mnt/openvpn \
-	/var/log/openvpn || :
+	'/mnt/openvpn' \
+	'/var/log/openvpn' || :
