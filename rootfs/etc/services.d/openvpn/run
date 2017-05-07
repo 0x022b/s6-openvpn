@@ -1,8 +1,10 @@
 #!/usr/bin/execlineb -P
+s6-setuidgid openvpn
 redirfd -a 2 /var/log/openvpn/stderr.log
 /usr/sbin/openvpn
-	--user openvpn --group openvpn
 	--log-append /var/log/openvpn/stdout.log
 	--config /mnt/openvpn/config.ovpn
 	--auth-user-pass /mnt/openvpn/login.conf
 	--auth-nocache
+	--dev tun0 --persist-tun
+	--iproute /usr/sbin/ip-su

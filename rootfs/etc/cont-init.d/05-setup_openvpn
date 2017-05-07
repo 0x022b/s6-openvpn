@@ -8,3 +8,6 @@ chmod -fR a=,u+rX \
 	'/mnt/openvpn' || :
 chmod -fR a=,ug+rwX \
 	'/var/log/openvpn' || :
+/usr/sbin/openvpn \
+	--mktun --dev 'tun0' --dev-type 'tun' \
+	--user 'openvpn' --group 'openvpn' > '/dev/null'
