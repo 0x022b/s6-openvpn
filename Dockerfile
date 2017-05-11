@@ -8,6 +8,9 @@ adduser -SD -s /sbin/nologin -h /var/lib/openvpn \
 apk --no-cache add \
 	iptables \
 	ip6tables \
-	openvpn
+	libcap \
+	openvpn \
+	sudo &&  \
+setcap cap_net_admin+ep /usr/sbin/openvpn
 
 COPY rootfs/ /

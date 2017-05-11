@@ -1,7 +1,7 @@
 #!/bin/sh
 rules='/tmp/ipv6-rules'
 
-if [ $(ifconfig -a | grep -c inet6) -eq 0 ]; then
+if [ $(ifconfig -a | grep -c 'inet6') -eq 0 ]; then
 	exit 0
 fi
 

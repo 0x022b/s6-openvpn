@@ -8,7 +8,7 @@ iptables -P INPUT DROP
 iptables -P FORWARD DROP
 iptables -P OUTPUT DROP
 
-if [ $(ifconfig -a | grep -c inet6) -eq 0 ]; then
+if [ $(ifconfig -a | grep -c 'inet6') -eq 0 ]; then
 	exit 0
 fi
 

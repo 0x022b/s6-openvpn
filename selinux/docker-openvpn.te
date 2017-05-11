@@ -7,10 +7,10 @@ require {
 	type kernel_t;
 	class file { open read };
 	class system module_request;
-	class tun_socket create;
+	class tun_socket { create relabelfrom relabelto };
 }
 
 #============= container_t ==============
 allow container_t config_home_t:file { open read };
 allow container_t kernel_t:system module_request;
-allow container_t self:tun_socket create;
+allow container_t self:tun_socket { create relabelfrom relabelto };
