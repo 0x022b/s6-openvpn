@@ -1,13 +1,16 @@
 #!/usr/bin/env sh
 mkdir -p \
-	'/var/log/openvpn'
+	'/var/log/openvpn' \
+	'/var/run/openvpn'
 chown -fR openvpn:openvpn \
 	'/mnt/openvpn' \
-	'/var/log/openvpn' || :
+	'/var/log/openvpn' \
+	'/var/run/openvpn' || :
 chmod -fR a=,u+rX \
 	'/mnt/openvpn' || :
 chmod -fR a=,ug+rwX \
-	'/var/log/openvpn' || :
+	'/var/log/openvpn'
+	'/var/run/openvpn' || :
 /usr/sbin/openvpn \
 	--mktun --dev 'tun0' --dev-type 'tun' \
 	--user 'openvpn' --group 'openvpn' > '/dev/null'

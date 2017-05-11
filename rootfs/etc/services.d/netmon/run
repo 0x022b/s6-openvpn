@@ -1,0 +1,16 @@
+#!/bin/sh
+nameserver=$(grep 'nameserver' /etc/resolv.conf | head -1 | awk '{ print $2 }')
+interval=${NETMON_INTERVAL:-60}
+
+while [ true ]; do
+	sleep ${interval}
+	ping -c 1 -w ${interval} -q ${nameserver} > /dev/null
+	if [ $? -gt 0 ]; then
+		printf "%s: Connection is unresponsive, sending SIGUSR1 signal\n" \
+			"$(date --rfc-2822)" >> '/var/log/netmon/stdout.log'
+		kill -SIGUSR1 $(cat '/var/run/openvpn/pid')
+		if [ $? -gt 0 ]; then
+			exit 1
+		fi
+	fi
+done
