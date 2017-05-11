@@ -28,6 +28,12 @@ for `auth-user-pass` parameter and it must contain username on the first line
 and password on the second line. For more information on how to configure
 OpenVPN see the official documentation at the [website][openvpn-doc].
 
+### Environment variables
+
+`NETMON_INTERVAL` environment variable defines the interval in seconds between
+connection checks. If left undefined a default value of 60 seconds will be used.
+Environment variables can be passed using `-e NETMON_INTERVAL=120` syntax.
+
 ## Mount points
 
 The container requires a couple of mount points to work, which are listed below.
@@ -53,6 +59,8 @@ a single log file.
 
 ```
 /var/log/
+	netmon/
+		stdout.log
 	openvpn/
 		stderr.log
 		stdout.log
