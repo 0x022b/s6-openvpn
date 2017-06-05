@@ -1,4 +1,4 @@
-FROM scoobadog/alpine-s6:3.5
+FROM scoobadog/alpine-s6:3.6
 MAINTAINER Janne K <0x022b@gmail.com>
 
 RUN \
