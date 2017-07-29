@@ -1,8 +1,8 @@
-# [docker-openvpn][container]
+# [s6-openvpn][container]
 
-[![Latest Tag](https://img.shields.io/github/tag/scoobadog/docker-openvpn.svg)](https://hub.docker.com/r/scoobadog/openvpn/tags/)
-[![Docker Build](https://img.shields.io/docker/automated/scoobadog/docker-openvpn.svg)](https://hub.docker.com/r/scoobadog/openvpn/builds/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/scoobadog/openvpn.svg)](https://hub.docker.com/r/scoobadog/openvpn/)
+[![Latest Tag](https://img.shields.io/github/tag/scoobadog/s6-openvpn.svg)](https://hub.docker.com/r/scoobadog/s6-openvpn/tags/)
+[![Docker Build](https://img.shields.io/docker/automated/scoobadog/s6-openvpn.svg)](https://hub.docker.com/r/scoobadog/s6-openvpn/builds/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/scoobadog/s6-openvpn.svg)](https://hub.docker.com/r/scoobadog/s6-openvpn/)
 
 A minimal [Alpine Linux][alpine] based [Docker][docker] container with
 [OpenVPN][openvpn] and [s6][overlay] as a process supervisor.
@@ -69,13 +69,13 @@ a single log file.
 ## SELinux
 
 To use this container on a host that has SELinux enabled use the provided
-`docker-openvpn.te` policy module or create your own if it doesn't work. To
+`s6-openvpn.te` policy module or create your own if it doesn't work. To
 compile and install the policy module run the following commands.
 
 ```
-$ checkmodule -M -m docker-openvpn.te -o /tmp/docker-openvpn.mod
-$ semodule_package -m /tmp/docker-openvpn.mod -o /tmp/docker-openvpn.pp
-# semodule -i /tmp/docker-openvpn.pp
+$ checkmodule -M -m s6-openvpn.te -o /tmp/s6-openvpn.mod
+$ semodule_package -m /tmp/s6-openvpn.mod -o /tmp/s6-openvpn.pp
+# semodule -i /tmp/s6-openvpn.pp
 ```
 
 In addition to installing the module, the volumes must be mounted using the
@@ -92,7 +92,7 @@ parameters to fit your environment.
 	--cap-add=NET_ADMIN --device=/dev/net/tun \
 	--dns=8.8.8.8 --dns=8.8.4.4 \
 	--volume ~/.config/openvpn:/mnt/openvpn:Z \
-	scoobadog/docker-openvpn:latest
+	scoobadog/s6-openvpn:latest
 ```
 
 ### systemd service
@@ -101,11 +101,11 @@ A reliable way to start the container at boot time and restart it, if something
 goes wrong and the container shuts down, is to let systemd to manage the
 container. Use the following code snippet as a template, modify the parameters
 to fit your environment and save it as
-`/usr/lib/systemd/system/docker-openvpn.service`.
+`/usr/lib/systemd/system/s6-openvpn.service`.
 
 ```
 [Unit]
-Description=docker-openvpn
+Description=s6-openvpn
 After=docker.service
 Requires=docker.service
 
@@ -115,7 +115,7 @@ ExecStart=/usr/bin/docker run \
 	--cap-add=NET_ADMIN --device=/dev/net/tun \
 	--dns=8.8.8.8 --dns=8.8.4.4 \
 	--volume ~/.config/openvpn:/mnt/openvpn:Z \
-	--name openvpn scoobadog/docker-openvpn:latest
+	--name openvpn scoobadog/s6-openvpn:latest
 ExecStop=/usr/bin/docker stop -t 10 openvpn
 ExecStopPost=/usr/bin/docker rm -f openvpn
 
@@ -126,15 +126,15 @@ WantedBy=multi-user.target
 To enable and start the service run the following commands.
 
 ```
-# systemctl enable docker-openvpn
-# systemctl start docker-openvpn
+# systemctl enable s6-openvpn
+# systemctl start s6-openvpn
 ```
 
 ## License
 
-docker-openvpn is licensed under the MIT License.
+This project is licensed under the MIT License.
 
-[container]: https://github.com/scoobadog/docker-openvpn
+[container]: https://github.com/scoobadog/s6-openvpn
 [alpine]: https://alpinelinux.org/
 [docker]: https://www.docker.com/
 [openvpn]: https://openvpn.net/
